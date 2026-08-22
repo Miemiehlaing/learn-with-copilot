@@ -41,3 +41,27 @@ function completeTask(id: number): void{
 
 completeTask(1);
 listTasks();
+
+function deleteTask(id: number): void{
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    if(taskIndex !== -1){
+        const deletedTask = tasks.splice(taskIndex, 1)[0];
+        console.log(`Task deleted: ${deletedTask.title}`);
+    }else{
+        console.log(`Task with id: ${id} not found`);
+    }
+}
+
+function updateTask(id: number, newTitle: string): void{
+    const task = tasks.find(task => task.id === id);   
+    if(task){
+        task.title = newTitle;
+        console.log(`Task updated: ${task.title}`);
+    }else{
+        console.log(`Task with id: ${id} not found`);
+    }
+}   
+
+deleteTask(2);
+updateTask(1, "Learn TypeScript and Github");
+listTasks();
